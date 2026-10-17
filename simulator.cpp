@@ -2,13 +2,12 @@
 #include <iostream>
 using namespace std;
 
-int *pages, *frames;
+int pages[100], frames[100];
 int n, f;
 
 int fifoFault, fifoHit;
 int lruFault, lruHit;
 int optFault, optHit;
-
 
 void FIFO()
 {
@@ -63,12 +62,13 @@ void FIFO()
     cout << "Total Page Hits: " << page_hits << endl;
     cout << "Hit Ratio: " << (double)page_hits * 100 / n << "%" << endl;
     cout << "Fault Ratio: " << (double)page_fault * 100 / n << "%" << endl;
+}
 
 void LRU()
 {
     int page_fault = 0, page_hits = 0;
     int i, j, found, pos, least;
-    int *lastUsed = new int[f];
+    int lastUsed[100];
 
     for (i = 0; i < f; i++)
     {
@@ -146,10 +146,7 @@ void LRU()
     cout << "Total Page Hits: " << page_hits << endl;
     cout << "Hit Ratio: " << (double)page_hits * 100 / n << "%" << endl;
     cout << "Fault Ratio: " << (double)page_fault * 100 / n << "%" << endl;
-
-    delete[] lastUsed;
 }
-
 
 void Optimal()
 {
@@ -240,9 +237,10 @@ void Optimal()
     cout << "Hit Ratio: " << (double)page_hits * 100 / n << "%" << endl;
     cout << "Fault Ratio: " << (double)page_fault * 100 / n << "%" << endl;
 }
+
 void Compare()
 {
-    cout << "\n PERFORMANCE COMPARISON\n";
+    cout << "\n--- PERFORMANCE COMPARISON ---\n";
     cout << "Algorithm\tPage Faults\tPage Hits\tHit Ratio\tFault Ratio\n";
 
     cout << "FIFO\t\t" << fifoFault << "\t\t" << fifoHit
@@ -258,46 +256,37 @@ void Compare()
          << "\t\t" << (double)optFault * 100 / n << "%" << endl;
 }
 
-// ================= MAIN FUNCTION =================
 int main()
 {
     int i;
 
-    cout << "Enter number of pages: ";
+    cout << "Enter number of pages (maximum 100): ";
     cin >> n;
 
-    if (n <= 0)
+    if (n <= 0 || n > 100)
     {
         cout << "Invalid number of pages!\n";
         return 1;
     }
-
-    pages = new int[n];
 
     cout << "Enter reference string: ";
 
     for (i = 0; i < n; i++)
         cin >> pages[i];
 
-    cout << "Enter number of frames: ";
+    cout << "Enter number of frames (maximum 100): ";
     cin >> f;
 
-    if (f <= 0)
+    if (f <= 0 || f > 100)
     {
         cout << "Invalid number of frames!\n";
-        delete[] pages;
         return 1;
     }
-
-    frames = new int[f];
 
     FIFO();
     LRU();
     Optimal();
     Compare();
-
-    delete[] pages;
-    delete[] frames;
 
     return 0;
 }
