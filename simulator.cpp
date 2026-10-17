@@ -260,7 +260,7 @@ int main()
 {
     int i;
 
-    cout << "Enter number of pages (maximum 100): ";
+    cout << "Enter number of pages =  ";
     cin >> n;
 
     if (n <= 0 || n > 100)
@@ -274,7 +274,7 @@ int main()
     for (i = 0; i < n; i++)
         cin >> pages[i];
 
-    cout << "Enter number of frames (maximum 100): ";
+    cout << "Enter number of frames =  ";
     cin >> f;
 
     if (f <= 0 || f > 100)
