@@ -9,7 +9,7 @@ int fifoFault, fifoHit;
 int lruFault, lruHit;
 int optFault, optHit;
 
-// ================= FIFO FUNCTION =================
+
 void FIFO()
 {
     int page_fault = 0, page_hits = 0;
@@ -63,9 +63,7 @@ void FIFO()
     cout << "Total Page Hits: " << page_hits << endl;
     cout << "Hit Ratio: " << (double)page_hits * 100 / n << "%" << endl;
     cout << "Fault Ratio: " << (double)page_fault * 100 / n << "%" << endl;
-}
 
-// ================= LRU FUNCTION =================
 void LRU()
 {
     int page_fault = 0, page_hits = 0;
@@ -152,7 +150,7 @@ void LRU()
     delete[] lastUsed;
 }
 
-// ================= OPTIMAL FUNCTION =================
+
 void Optimal()
 {
     int page_fault = 0, page_hits = 0;
@@ -242,11 +240,9 @@ void Optimal()
     cout << "Hit Ratio: " << (double)page_hits * 100 / n << "%" << endl;
     cout << "Fault Ratio: " << (double)page_fault * 100 / n << "%" << endl;
 }
-
-// ================= COMPARISON FUNCTION =================
 void Compare()
 {
-    cout << "\n========== PERFORMANCE COMPARISON ==========\n";
+    cout << "\n PERFORMANCE COMPARISON\n";
     cout << "Algorithm\tPage Faults\tPage Hits\tHit Ratio\tFault Ratio\n";
 
     cout << "FIFO\t\t" << fifoFault << "\t\t" << fifoHit
